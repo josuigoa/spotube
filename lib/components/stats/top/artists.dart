@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:spotube/collections/formatters.dart';
 import 'package:spotube/components/stats/common/artist_item.dart';
+import 'package:spotube/extensions/context.dart';
 import 'package:spotube/provider/history/top.dart';
 
 class TopArtists extends HookConsumerWidget {
@@ -19,7 +20,10 @@ class TopArtists extends HookConsumerWidget {
         final artist = artists[index];
         return StatsArtistItem(
           artist: artist.artist,
-          info: Text("${compactNumberFormatter.format(artist.count)} plays"),
+          info: Text(
+            context.l10n
+                .count_plays(compactNumberFormatter.format(artist.count)),
+          ),
         );
       },
     );

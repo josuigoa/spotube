@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:spotube/collections/formatters.dart';
 import 'package:spotube/components/shared/page_window_title_bar.dart';
 import 'package:spotube/components/stats/common/album_item.dart';
+import 'package:spotube/extensions/context.dart';
 import 'package:spotube/provider/history/state.dart';
 import 'package:spotube/provider/history/top.dart';
 
@@ -18,10 +19,10 @@ class StatsAlbumsPage extends HookConsumerWidget {
     );
 
     return Scaffold(
-      appBar: const PageWindowTitleBar(
+      appBar: PageWindowTitleBar(
         automaticallyImplyLeading: true,
         centerTitle: false,
-        title: Text("Albums"),
+        title: Text(context.l10n.albums),
       ),
       body: ListView.builder(
         itemCount: albums.length,
@@ -29,7 +30,8 @@ class StatsAlbumsPage extends HookConsumerWidget {
           final album = albums[index];
           return StatsAlbumItem(
             album: album.album,
-            info: Text("${compactNumberFormatter.format(album.count)} plays"),
+            info: Text(context.l10n
+                .count_plays(compactNumberFormatter.format(album.count))),
           );
         },
       ),

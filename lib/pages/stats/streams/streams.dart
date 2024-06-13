@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:spotube/collections/formatters.dart';
 import 'package:spotube/components/shared/page_window_title_bar.dart';
 import 'package:spotube/components/stats/common/track_item.dart';
+import 'package:spotube/extensions/context.dart';
 import 'package:spotube/provider/history/state.dart';
 import 'package:spotube/provider/history/top.dart';
 
@@ -20,8 +21,8 @@ class StatsStreamsPage extends HookConsumerWidget {
     );
 
     return Scaffold(
-      appBar: const PageWindowTitleBar(
-        title: Text("Streamed songs"),
+      appBar: PageWindowTitleBar(
+        title: Text(context.l10n.streamed_songs),
         centerTitle: false,
         automaticallyImplyLeading: true,
       ),
@@ -34,7 +35,7 @@ class StatsStreamsPage extends HookConsumerWidget {
           return StatsTrackItem(
             track: track,
             info: Text(
-              "${compactNumberFormatter.format(count)} streams",
+              context.l10n.count_streams(compactNumberFormatter.format(count)),
             ),
           );
         },

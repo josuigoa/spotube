@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:spotube/collections/formatters.dart';
 import 'package:spotube/components/shared/page_window_title_bar.dart';
 import 'package:spotube/components/stats/common/playlist_item.dart';
+import 'package:spotube/extensions/context.dart';
 import 'package:spotube/provider/history/state.dart';
 import 'package:spotube/provider/history/top.dart';
 
@@ -18,10 +19,10 @@ class StatsPlaylistsPage extends HookConsumerWidget {
     );
 
     return Scaffold(
-      appBar: const PageWindowTitleBar(
+      appBar: PageWindowTitleBar(
         automaticallyImplyLeading: true,
         centerTitle: false,
-        title: Text("Playlists"),
+        title: Text(context.l10n.playlists),
       ),
       body: ListView.builder(
         itemCount: playlists.length,
@@ -29,8 +30,10 @@ class StatsPlaylistsPage extends HookConsumerWidget {
           final playlist = playlists[index];
           return StatsPlaylistItem(
             playlist: playlist.playlist.playlist,
-            info:
-                Text("${compactNumberFormatter.format(playlist.count)} plays"),
+            info: Text(
+              context.l10n
+                  .count_plays(compactNumberFormatter.format(playlist.count)),
+            ),
           );
         },
       ),
