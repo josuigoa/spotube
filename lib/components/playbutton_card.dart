@@ -8,6 +8,7 @@ import 'package:spotube/collections/spotube_icons.dart';
 import 'package:spotube/components/hover_builder.dart';
 import 'package:spotube/components/image/universal_image.dart';
 import 'package:spotube/extensions/constrains.dart';
+import 'package:spotube/extensions/context.dart';
 import 'package:spotube/hooks/utils/use_breakpoint_value.dart';
 import 'package:spotube/hooks/utils/use_brightness_value.dart';
 
@@ -137,7 +138,7 @@ class PlaybuttonCard extends HookWidget {
                                 ),
                                 if (isHovered)
                                   Text(
-                                    "Owned by you",
+                                    context.l10n.owned_by_you,
                                     style: theme.textTheme.bodySmall?.copyWith(
                                       color: Colors.white,
                                     ),

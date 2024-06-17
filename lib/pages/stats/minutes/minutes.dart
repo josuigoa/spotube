@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:spotube/collections/formatters.dart';
 import 'package:spotube/components/titlebar/titlebar.dart';
 import 'package:spotube/modules/stats/common/track_item.dart';
+import 'package:spotube/extensions/context.dart';
 import 'package:spotube/provider/history/state.dart';
 import 'package:spotube/provider/history/top.dart';
 
@@ -20,8 +21,8 @@ class StatsMinutesPage extends HookConsumerWidget {
     );
 
     return Scaffold(
-      appBar: const PageWindowTitleBar(
-        title: Text("Minutes listened"),
+      appBar: PageWindowTitleBar(
+        title: Text(context.l10n.minutes_listened),
         centerTitle: false,
         automaticallyImplyLeading: true,
       ),
@@ -34,7 +35,8 @@ class StatsMinutesPage extends HookConsumerWidget {
           return StatsTrackItem(
             track: track,
             info: Text(
-              "${compactNumberFormatter.format(count * track.duration!.inMinutes)} mins",
+              context.l10n.count_mins(compactNumberFormatter
+                  .format(count * track.duration!.inMinutes)),
             ),
           );
         },

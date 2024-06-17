@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:spotube/collections/formatters.dart';
 import 'package:spotube/modules/stats/common/track_item.dart';
+import 'package:spotube/extensions/context.dart';
 import 'package:spotube/provider/history/top.dart';
 
 class TopTracks extends HookConsumerWidget {
@@ -22,7 +23,8 @@ class TopTracks extends HookConsumerWidget {
         return StatsTrackItem(
           track: track.track,
           info: Text(
-            "${compactNumberFormatter.format(track.count)} plays",
+            context.l10n
+                .count_plays(compactNumberFormatter.format(track.count)),
           ),
         );
       },
